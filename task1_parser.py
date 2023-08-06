@@ -1,13 +1,19 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+import requests
+
+
+URL = 'https://nedradv.ru/nedradv/ru/auction'
 
 driver = webdriver.Chrome()
-driver.get("http://www.python.org")
-assert "Python" in driver.title
-elem = driver.find_element(By.NAME, "q")
-elem.clear()
-elem.send_keys("pycon")
-elem.send_keys(Keys.RETURN)
-assert "No results found." not in driver.page_source
-driver.close()
+dates = driver.find_elements(By.NAME, 'a')
+
+for date in dates:
+    print(date.text)
+
+response = requests.get(URL)
+with open('output.txt', 'w', encoding='utf-8') as file:
+    file.write(response.text)
+
+driver.quit()

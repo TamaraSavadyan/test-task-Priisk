@@ -13,7 +13,7 @@ driver_chrome = webdriver.Chrome()
 def parse_data(driver: webdriver, url: str):
     driver.get(url)
     file_path = 'data2.json'
-    output = []
+    elems_output = []
     json_result = []
     urls = []
     conditions = [
@@ -33,18 +33,16 @@ def parse_data(driver: webdriver, url: str):
 
         if not i % 4 and i:
             data = {
-                'Дата': output[0],
-                'Участок': output[1],
-                'Регион': output[2],
-                'Статус': output[3],
+                'Дата': elems_output[0],
+                'Участок': elems_output[1],
+                'Регион': elems_output[2],
+                'Статус': elems_output[3],
             }
 
             json_result.append(data)
-            output.clear()
+            elems_output.clear()
 
-        output.append(element.text)
-    
-   
+        elems_output.append(element.text)
 
     for i, url in enumerate(urls):
         driver.get(url)
@@ -68,4 +66,3 @@ def parse_data(driver: webdriver, url: str):
 
 if __name__ == '__main__':
     parse_data(driver_chrome, URL)
-    

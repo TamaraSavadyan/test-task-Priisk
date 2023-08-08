@@ -1,3 +1,4 @@
+/*task 1*/
 SELECT
     Абоненты.ФИО,
     Звонки.время_разговора
@@ -8,8 +9,7 @@ JOIN
 WHERE
     Звонки.дата_разговора BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '1 DAY';
 
-
-
+/*task 2*/
 SELECT
     номер_телефона,
     дата_разговора,
@@ -20,7 +20,7 @@ WHERE
     дата_разговора BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '1 DAY'
     AND время_разговора > 5;
 
-
+/*task 3*/
 SELECT
     з1.номер_телефона,
     з1.дата_разговора,
@@ -32,7 +32,7 @@ LEFT JOIN
     AND з1.дата_разговора > з2.дата_разговора
     AND з1.дата_разговора - з2.дата_разговора <= INTERVAL '5 MINUTE';
 
-
+/*task 4*/
 SELECT
     А.ФИО AS Абонент,
     COUNT(З.номер_телефона) AS Количество_звонков,
